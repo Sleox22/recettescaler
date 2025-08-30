@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Convertisseur de Recettes – Gagnez en ligne sans budget</title>
+  <meta name="description" content="Un outil pratique pour agrandir ou réduire vos recettes et générer la liste de courses. Intégrez facilement des liens d’affiliation et la pub quand vous serez éligible."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; }
+    .prose p { margin: .6rem 0; }
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,.7); }
+    .shadow-soft { box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+    .card { border-radius: 1.25rem; }
+    .badge { font-size: .75rem; padding: .25rem .5rem; border-radius: .5rem; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-amber-50 via-white to-amber-100 text-slate-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 glass border-b border-amber-200/60">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="text-xl font-bold">RecetteScaler<span class="text-amber-600">.fr</span></a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#outil" class="hover:text-amber-700">Outil</a>
+        <a href="#guides" class="hover:text-amber-700">Guides</a>
+        <a href="#devenir-partenaire" class="hover:text-amber-700">Monétisation</a>
+        <a href="#faq" class="hover:text-amber-700">FAQ</a>
+      </nav>
+      <a href="#devenir-partenaire" class="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-xl hover:bg-amber-700 shadow-soft text-sm">Gagner de l’argent</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-16 pb-10">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Convertissez vos recettes, publiez des guides… et monétisez <span class="text-amber-700">sans budget</span>.</h1>
+        <p class="mt-4 text-slate-700">Un site statique prêt à déployer gratuitement. Ajoutez vos articles et vos liens d’affiliation (Amazon, boutiques culinaires), puis activez la pub quand vous serez accepté.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#outil" class="px-5 py-3 bg-amber-600 text-white rounded-xl hover:bg-amber-700 shadow-soft">Utiliser l’outil</a>
+          <a href="#guides" class="px-5 py-3 bg-white rounded-xl shadow-soft border">Voir les guides</a>
+        </div>
+        <div class="mt-4 text-xs text-slate-500">100% gratuit à héberger sur GitHub Pages / Netlify. Pas besoin de se filmer.</div>
+      </div>
+      <div class="card bg-white shadow-soft p-6">
+        <ul class="text-sm grid grid-cols-2 gap-3">
+          <li class="flex items-center gap-2"><span class="badge bg-amber-100 text-amber-800">✔</span> Sans budget de départ</li>
+          <li class="flex items-center gap-2"><span class="badge bg-amber-100 text-amber-800">✔</span> Sans se montrer</li>
+          <li class="flex items-center gap-2"><span class="badge bg-amber-100 text-amber-800">✔</span> SEO-friendly</li>
+          <li class="flex items-center gap-2"><span class="badge bg-amber-100 text-amber-800">✔</span> Responsive</li>
+        </ul>
+        <img alt="aperçu" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop" class="mt-4 rounded-xl"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Outil principal -->
+  <section id="outil" class="py-10 bg-white/70 border-y">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="md:flex items-end justify-between gap-6">
+        <h2 class="text-2xl md:text-3xl font-bold">Convertisseur de recettes & liste de courses</h2>
+        <div class="text-xs text-slate-500">Collez vos ingrédients ligne par ligne. Indiquez les personnes, l’outil calcule.</div>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 card bg-white p-5 shadow-soft">
+          <label class="text-sm font-semibold">Ingrédients (une ligne par ingrédient)</label>
+          <textarea id="ingredients" class="mt-2 w-full h-56 p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Exemple :\n200 g farine\n2 œufs\n1 c. à s. sucre\n0,5 l lait\n1/2 sachet levure"></textarea>
+
+          <div class="mt-4 grid grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm font-semibold">Portions d’origine</label>
+              <input id="baseServings" type="number" min="1" value="4" class="mt-2 w-full p-2 border rounded-xl" />
+            </div>
+            <div>
+              <label class="text-sm font-semibold">Portions souhaitées</label>
+              <input id="targetServings" type="number" min="1" value="6" class="mt-2 w-full p-2 border rounded-xl" />
+            </div>
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button id="btnScale" class="px-4 py-2 bg-amber-600 text-white rounded-xl hover:bg-amber-700">Convertir</button>
+            <button id="btnClear" class="px-4 py-2 bg-white border rounded-xl">Effacer</button>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="font-semibold text-lg">Résultat</h3>
+            <pre id="result" class="mt-2 p-3 bg-amber-50 border rounded-xl text-sm whitespace-pre-wrap"></pre>
+          </div>
+        </div>
+
+        <aside class="card bg-white p-5 shadow-soft space-y-4">
+          <div class="text-sm text-slate-600">Monétisation (remplacez les liens)</div>
+          <a class="block p-4 border rounded-xl hover:bg-amber-50" href="#" target="_blank" rel="nofollow noopener">👉 Batteur électrique recommandé</a>
+          <a class="block p-4 border rounded-xl hover:bg-amber-50" href="#" target="_blank" rel="nofollow noopener">👉 Balance de cuisine précise</a>
+          <a class="block p-4 border rounded-xl hover:bg-amber-50" href="#" target="_blank" rel="nofollow noopener">👉 Set de mesures (cups & spoons)</a>
+
+          <div class="p-4 border rounded-xl">
+            <div class="text-xs text-slate-500">Emplacement Publicité</div>
+            <div class="text-xs">Quand vous serez accepté par AdSense ou une régie, collez ici leur script.</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides de contenu SEO -->
+  <section id="guides" class="py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold">Guides populaires</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <article class="card bg-white p-6 shadow-soft prose">
+          <h3 class="font-semibold text-xl">Comment réussir des crêpes pour n’importe quel nombre d’invités</h3>
+          <p>Pas besoin de refaire tous vos calculs : utilisez le convertisseur ci-dessus, puis ajustez la texture avec un peu plus de lait si la pâte épaissit en reposant. Astuce anti-grumeaux : versez le lait petit à petit en fouettant.</p>
+          <a href="#outil" class="inline-block mt-2 text-amber-700">Convertir ma recette →</a>
+        </article>
+        <article class="card bg-white p-6 shadow-soft prose">
+          <h3 class="font-semibold text-xl">Économiser en cuisine : 7 ingrédients polyvalents à toujours avoir</h3>
+          <ul>
+            <li>Farine + œufs = crêpes, pâtes fraîches, gâteaux rapides</li>
+            <li>Lentilles = salades, dahl, boulettes végétales</li>
+            <li>…</li>
+          </ul>
+          <p>Astuce monétaire : achetez en vrac et pesez avec une balance précise.</p>
+          <a href="#" class="inline-block mt-2 text-amber-700" rel="nofollow noopener">Voir une balance pas chère →</a>
+        </article>
+        <article class="card bg-white p-6 shadow-soft prose">
+          <h3 class="font-semibold text-xl">Guide des équivalences : cuillères, tasses, grammes</h3>
+          <p>En pâtisserie française, préférez les grammes pour plus de précision, mais si une recette indique « 1 cup de farine », comptez ~120 g. Ce chiffre varie selon le tassement.</p>
+          <a href="#" class="inline-block mt-2 text-amber-700" rel="nofollow noopener">Acheter un set cups/spoons →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bloc monétisation + explications -->
+  <section id="devenir-partenaire" class="py-12 bg-amber-50/60 border-y">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold">Monétisez sans dépenser</h2>
+        <ul class="mt-4 space-y-2 list-disc pl-5">
+          <li><strong>Affiliation</strong> : inscrivez-vous (gratuit) à Amazon Partenaires ou à des boutiques culinaires. Remplacez les liens « 👉 … » ci-dessus par vos liens d’affiliation.</li>
+          <li><strong>Publicité</strong> : après un peu de trafic, demandez l’accès à AdSense et collez le script dans les blocs « Emplacement Publicité ».</li>
+          <li><strong>Guides SEO</strong> : publiez 2–3 articles par semaine répondant à des questions précises (ex. « combien de crêpes par personne ? »). L’outil attire des liens naturels.</li>
+          <li><strong>Newsletter</strong> : intégrez un formulaire gratuit (Buttondown/Substack) pour fidéliser les visiteurs.</li>
+        </ul>
+      </div>
+      <div class="card bg-white p-6 shadow-soft">
+        <div class="text-sm text-slate-600">Checklist express</div>
+        <ol class="mt-3 text-sm space-y-2 list-decimal pl-5">
+          <li>Déployez gratuitement sur GitHub Pages ou Netlify.</li>
+          <li>Écrivez vos 10 premiers articles « how-to » (1000 mots chacun).</li>
+          <li>Remplacez les liens par vos liens affiliés.</li>
+          <li>Ajoutez une page « À propos », « Mentions légales » et « Politique de confidentialité ».</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold">FAQ</h2>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <div class="card bg-white p-6 shadow-soft">
+          <h3 class="font-semibold">Combien ça coûte ?</h3>
+          <p>0 € pour démarrer : hébergement gratuit, sous-domaine gratuit. Achetez un nom de domaine plus tard si vous le souhaitez.</p>
+        </div>
+        <div class="card bg-white p-6 shadow-soft">
+          <h3 class="font-semibold">Dois-je me montrer ?</h3>
+          <p>Non. C’est un site d’outils et d’articles : aucune vidéo ni selfie requis.</p>
+        </div>
+        <div class="card bg-white p-6 shadow-soft">
+          <h3 class="font-semibold">Comment gagner ?</h3>
+          <p>Affiliation et pubs contextuelles. Les outils pratiques génèrent un trafic régulier, puis les guides convertissent.</p>
+        </div>
+        <div class="card bg-white p-6 shadow-soft">
+          <h3 class="font-semibold">Puis-je ajouter d’autres outils ?</h3>
+          <p>Oui : créez de nouvelles pages .html et copiez le style. Exemples : convertisseur d’unités, calculateur de portions, planificateur de menus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 text-sm text-slate-600">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+      <div>
+        <div class="font-semibold">RecetteScaler.fr</div>
+        <p class="mt-2">Un site d’outils culinaires gratuits. Remplacez ce texte par votre marque.</p>
+      </div>
+      <div>
+        <div class="font-semibold">Liens utiles</div>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#devenir-partenaire" class="hover:text-amber-700">Monétisation</a></li>
+          <li><a href="#guides" class="hover:text-amber-700">Guides</a></li>
+          <li><a href="#outil" class="hover:text-amber-700">Convertisseur</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold">Légal</div>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#" class="hover:text-amber-700">Mentions légales</a></li>
+          <li><a href="#" class="hover:text-amber-700">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 mt-6 text-xs">© <span id="year"></span> Votre Marque. Certains liens peuvent être affiliés.</div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
+    function parseNumber(str) {
+      // gère 1/2, 3/4, 1 1/2, virgules françaises, etc.
+      str = (str || '').trim().replace(/\u00A0/g, ' ');
+      // extrait toutes les parties numériques
+      const fracMatch = str.match(/(\d+)\s*(?:[.,](\d+))?\s*(?:([\u2044\/])\s*(\d+))?/);
+      if (!fracMatch) return null;
+      let whole = parseInt(fracMatch[1] || '0', 10);
+      let decimal = fracMatch[2] ? parseFloat('0.' + fracMatch[2]) : 0;
+      let numer = 0, denom = 1;
+      if (fracMatch[3] && fracMatch[4]) { numer = whole; denom = parseInt(fracMatch[4], 10); whole = 0; }
+      // Cherche un format "1 1/2"
+      const mix = str.match(/(\d+)\s+(\d+)\s*[\/\u2044]\s*(\d+)/);
+      if (mix) {
+        const w = parseInt(mix[1],10), n = parseInt(mix[2],10), d = parseInt(mix[3],10);
+        return w + n/d;
+      }
+      // Cherche un format simple fraction "1/2"
+      const simple = str.match(/\b(\d+)\s*[\/\u2044]\s*(\d+)\b/);
+      if (simple) {
+        return parseInt(simple[1],10) / parseInt(simple[2],10);
+      }
+      return whole + decimal;
+    }
+
+    function formatNumber(num) {
+      if (num == null || isNaN(num)) return '';
+      // arrondi malin : 1 décimale si < 10, sinon entier
+      const rounded = num < 10 ? Math.round(num * 10) / 10 : Math.round(num);
+      // renvoie virgule française
+      return String(rounded).replace('.', ',');
+    }
+
+    function scaleLine(line, factor) {
+      // cherche le premier nombre et le multiplie
+      const regex = /(\d+[\s,\.]*\d*|\d+\s*[\/\u2044]\s*\d+)/; // 2,5 | 2.5 | 1/2
+      const m = line.match(regex);
+      if (!m) return line; // pas de nombre → inchangé
+      const original = m[0];
+      const val = parseNumber(original);
+      if (val == null) return line;
+      const scaled = val * factor;
+      return line.replace(original, formatNumber(scaled));
+    }
+
+    function scaleAll(text, base, target) {
+      const factor = target / base;
+      return text.split(/\r?\n/).map(l => scaleLine(l, factor)).join('\n');
+    }
+
+    document.getElementById('btnScale').addEventListener('click', () => {
+      const text = document.getElementById('ingredients').value;
+      const base = parseFloat(document.getElementById('baseServings').value || '1');
+      const target = parseFloat(document.getElementById('targetServings').value || '1');
+      if (!text.trim()) { alert('Collez d\'abord la liste d\'ingrédients.'); return; }
+      if (base <= 0 || target <= 0) { alert('Les portions doivent être > 0'); return; }
+      const out = scaleAll(text, base, target);
+      document.getElementById('result').textContent = out + "\n\n" + generateShoppingList(out);
+    });
+
+    document.getElementById('btnClear').addEventListener('click', () => {
+      document.getElementById('ingredients').value = '';
+      document.getElementById('result').textContent = '';
+    });
+
+    function generateShoppingList(text) {
+      // extrait nom d\'ingrédient (après le premier nombre + unité éventuelle)
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      const items = lines.map(l => {
+        // supprime la quantité au début
+        const cleaned = l.replace(/^\s*(\d+[\s,\.]*\d*|\d+\s*[\/\u2044]\s*\d+)?\s*(?:[a-zA-ZÀ-ÿ\.\-]+)?\s*/,'');
+        return '• ' + cleaned.trim();
+      });
+      return 'Liste de courses :\n' + items.join('\n');
+    }
+  </script>
+</body>
+</html>
